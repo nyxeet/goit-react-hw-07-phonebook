@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
 import { createAction } from '@reduxjs/toolkit';
 
 const fetchContactsRequest = createAction('contacts/fetchContactsRequest');
@@ -11,12 +10,9 @@ const deleteContactRequest = createAction('todos/deleteContactRequest');
 const deleteContactSuccess = createAction('todos/deleteContactSuccess');
 const deleteContactError = createAction('todos/deleteContactError');
 
-const deleteContact = createAction('contacts/delete');
-
 const changeFilter = createAction('contacts/changeFilter');
 
 export default {
-  deleteContact,
   changeFilter,
   fetchContactsRequest,
   fetchContactsSuccess,

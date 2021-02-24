@@ -22,8 +22,13 @@ class ContactsEditor extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-
-    this.props.onSubmit(this.state.text, this.state.tel);
+    const { contacts } = this.props;
+    const { text, tel } = this.state;
+    if (contacts.some(contact => contact.name === text)) {
+      alert(`${text} is already in contacts`);
+    } else {
+      this.props.onSubmit(text, tel);
+    }
 
     this.setState({ text: '', tel: '' });
   };
@@ -57,10 +62,13 @@ class ContactsEditor extends Component {
     );
   }
 }
-
+const mapStateToProps = ({ state: { contacts } }) => ({
+  contacts,
+});
 const mapDispatchToProps = dispatch => ({
-  onSubmit: (name, number) =>
-    dispatch(contactsOperations.addContact(name, number)),
+  onSubmit: (name, number) => {
+    return dispatch(contactsOperations.addContact(name, number));
+  },
 });
 
-export default connect(null, mapDispatchToProps)(ContactsEditor);
+export default connect(mapStateToProps, mapDispatchToProps)(ContactsEditor);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import contactsOperations from '../../redux/contacts-operations';
+import contactsSelectors from '../../redux/contacts-selectors';
 import './ContactsEditor.css';
 
 class ContactsEditor extends Component {
@@ -62,8 +63,8 @@ class ContactsEditor extends Component {
     );
   }
 }
-const mapStateToProps = ({ state: { contacts } }) => ({
-  contacts,
+const mapStateToProps = state => ({
+  contacts: contactsSelectors.getAllContacts(state),
 });
 const mapDispatchToProps = dispatch => ({
   onSubmit: (name, number) => {

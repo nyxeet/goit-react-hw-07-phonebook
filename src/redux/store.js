@@ -21,7 +21,7 @@ const middleware = [
 
 const store = configureStore({
   reducer: {
-    state: contactsReducer,
+    contacts: contactsReducer,
   },
   middleware,
 });

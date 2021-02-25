@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import contactsOperations from '../../redux/contacts-operations';
+import contactsSelectors from '../../redux/contacts-selectors';
 import './ContactsList.css';
 
 class TaskList extends Component {
@@ -22,13 +23,9 @@ class TaskList extends Component {
     );
   }
 }
-const filterContacts = (contacts, filter) => {
-  return contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase()),
-  );
-};
-const mapStateToProps = ({ state: { contacts, filter } }) => ({
-  contacts: filterContacts(contacts, filter),
+
+const mapStateToProps = state => ({
+  contacts: contactsSelectors.getFilteredContacts(state),
 });
 
 const mapDispatchToProps = dispatch => ({
